@@ -19,16 +19,49 @@ class App {
   }
 
   run = () => {
-    Car.list.forEach((car) => {
-      const node = document.createElement('div');
-      node.innerHTML = car.render();
-      this.carContainerElement.appendChild(node);
-    });
+    this.clear();
+    // mengambi data pada form
+    const jumlahOrang = this.jumlah.value;
+    const date = this.date.value;
+    const time = this.time.value;
+    // menggabungkan date dan time
+    const newDate = new Date(`${date} ${time}`);
+    // mendapatkan epoch
+    const epoch = newDate.getTime();
+    // console.log('jumlah orang ', jumlahOrang, 'date ', newDate, 'epoch ', epoch);
+    // kirimkan data ke load
+    this.load(epoch, jumlahOrang);
+
+    // Car.list.forEach((car) => {
+    //   const node = document.createElement('div');
+    //   node.innerHTML = car.render();
+    //   this.carContainerElement.appendChild(node);
+    // });
   };
 
-  async load() {
-    const cars = await Binar.listCars();
-    Car.init(cars);
+  async load(time, capacity) {
+    if (time || capacity) {
+      console.log('data ada');
+      const cars = await Binar.listCars((item) => item.capacity >= capacity && item.availableAt >= time);
+      console.log(cars);
+      Car.init(cars);
+      Car.list.forEach((car) => {
+        const node = document.createElement('div');
+        node.innerHTML = car.render();
+        this.carContainerElement.appendChild(node);
+      });
+    } else {
+      console.log('data kosong');
+
+      const cars = await Binar.listCars();
+      console.log(cars);
+      Car.init(cars);
+      Car.list.forEach((car) => {
+        const node = document.createElement('div');
+        node.innerHTML = car.render();
+        this.carContainerElement.appendChild(node);
+      });
+    }
   }
 
   clear = () => {
