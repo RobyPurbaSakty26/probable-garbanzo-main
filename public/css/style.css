@@ -121,8 +121,7 @@ div.car-list {
 
 /* car img */
 .card-insize {
-  min-height: 700px;
-  margin-bottom: 50px;
+  min-height: 90px;
 }
 
 /* img in card */

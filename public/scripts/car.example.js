@@ -26,13 +26,13 @@ class Car {
   render() {
     return `
           <div class="col">
-            <div class="card card-insize">
+            <div class="card mb-5">
               <div class="car-list">
               <img src="${this.image}" id="imgCar" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">${this.type}</h5>
                 <h3> <b>Rp ${this.rentPerDay} /Hari</b> </h3>
-                <p class="card-text">${this.description}</p>
+                <p class="card-text card-insize">${this.description}</p>
                 
                 <div class="row pb-2">
                   <div class="col-1"><img src="./asset/img/icon/fi_users.png" alt=""></div>
