@@ -12,12 +12,12 @@ function onRequest(req, res) {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
     });
-  } else if (req.url === '/GET/') {
+  } else if (req.url === '/GET') {
     fs.readFile('./public/index.html', 'UTF-8', function (err, html) {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
     });
-  } else if (req.url === '/GETCars') {
+  } else if (req.url === '/Cars') {
     fs.readFile('./public/CariMobil.html', 'UTF-8', function (err, html) {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
